@@ -1,6 +1,6 @@
 import { Injectable, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Headers, Http, HttpModule, RequestOptions } from '@angular/http';
+import { CommonModule } from '@angular/common';
 
 class BlobService {
     /**
@@ -198,5 +198,5 @@ BlobModule.ctorParameters = () => [];
  * Generated bundle index. Do not edit.
  */
 
-export { BlobModule, BlobService as ɵa };
+export { BlobService, BlobModule };
 //# sourceMappingURL=angular-azure-blob-service.js.map

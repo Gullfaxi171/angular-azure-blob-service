@@ -15,6 +15,12 @@ import { BlobModule } from './modules/blob/blob.module';
 })
 ```
 
+In your component
+
+```js
+import { BlobService } from 'angular-azure-blob-service'
+```
+
 ```js
 const Config: UploadParams = {
   sas: 'my sas',

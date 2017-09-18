@@ -1,6 +1,5 @@
 /**
  * Generated bundle index. Do not edit.
  */
-export { BlobModule } from './public_api';
-export { BlobService as ɵa } from './src/app/modules/blob/blob.service';
+export { BlobService, BlobModule } from './public_api';
 //# sourceMappingURL=angular-azure-blob-service.js.map
