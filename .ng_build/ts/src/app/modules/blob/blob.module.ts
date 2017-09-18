@@ -1,13 +1,24 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 import { BlobService } from './blob.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    HttpModule
   ],
   declarations: [],
-  exports: [BlobService]
+  exports: []
 })
-export class BlobModule { }
+export class BlobModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: BlobModule,
+      providers: [
+        BlobService
+      ]
+    };
+  }
+}
