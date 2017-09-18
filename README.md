@@ -4,7 +4,7 @@ A simple module for communication with Azure Blob Storage from angular apps. Wor
 In your app.module.ts
 
 ```js
-import { BlobModule } from './modules/blob/blob.module';
+import { BlobModule } from 'angular-azure-blob-service';
 
 @NgModule({
   ...
@@ -18,7 +18,7 @@ import { BlobModule } from './modules/blob/blob.module';
 In your component
 
 ```js
-import { BlobService } from 'angular-azure-blob-service'
+import { BlobService, UploadConfig, UploadParams } from 'angular-azure-blob-service'
 ```
 
 ```js
