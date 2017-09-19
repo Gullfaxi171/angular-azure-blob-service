@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { BlobService } from './blob.service';
+export { BlobService } from './blob.service';
 export class BlobModule {
     /**
      * @return {?}

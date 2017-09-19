@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/http'), require('@angular/common')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/http', '@angular/common'], factory) :
-	(factory((global['angular-azure-blob-service'] = {}),global.ng.core,global.ng.http,global.ng.common));
-}(this, (function (exports,core,http,common) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/http')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/common', '@angular/http'], factory) :
+	(factory((global['angular-azure-blob-service'] = {}),global.ng.core,global.ng.common,global.ng.http));
+}(this, (function (exports,core,common,http) { 'use strict';
 
 var BlobService = (function () {
     /**

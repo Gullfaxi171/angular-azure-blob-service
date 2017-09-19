@@ -1,4 +1,4 @@
-import { UploadParams } from './modules/blob';
+import { UploadParams } from './modules/blob/blob.module';
 
 export const Config: UploadParams = {
   sas: 'my sas',

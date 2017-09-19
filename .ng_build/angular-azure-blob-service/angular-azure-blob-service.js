@@ -1,6 +1,6 @@
 import { Injectable, NgModule } from '@angular/core';
-import { Headers, Http, HttpModule, RequestOptions } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { Headers, Http, HttpModule, RequestOptions } from '@angular/http';
 
 class BlobService {
     /**
