@@ -1,10 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { BlobService } from './blob.service';
+import { HttpModule } from '@angular/http';
 
 describe('BlobService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpModule],
       providers: [BlobService]
     });
   });
