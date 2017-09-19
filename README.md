@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Gullfaxi171/angular-azure-blob-service.svg?branch=master)](https://travis-ci.org/Gullfaxi171/angular-azure-blob-service)
+
 # angular-azure-blob-service
 A simple module for communication with Azure Blob Storage from angular apps. Works with @angular 4
 
