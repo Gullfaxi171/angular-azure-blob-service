@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BlobService, UploadConfig, UploadParams } from './modules/blob/blob.module';
-import { Config } from './config.template';
+import { Config } from './config';
 
 @Component({
   selector: 'app-root',

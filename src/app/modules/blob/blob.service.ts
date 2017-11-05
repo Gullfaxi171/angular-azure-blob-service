@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { UploadParams } from './definitions';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class BlobService {
   static DefaultBlockSize = 1024 * 32;
-  constructor (private http: Http) { }
+  constructor (private http: HttpClient) { }
   generateBlobUrl (params: UploadParams, filename: string) {
     return 'https://' + params.storageAccount + '.blob.core.windows.net/' + params.containerName + '/' + filename;
   }
@@ -28,24 +29,20 @@ export class BlobService {
   }
   private commitBlockList (state) {
       const uri = state.fileUrl + '&comp=blocklist';
-      const headers = new Headers({'x-ms-blob-content-type': state.file.type });
-      const options = new RequestOptions({ headers: headers });
+      const headers = new HttpHeaders({ 'x-ms-blob-content-type': state.file.type });
       let requestBody = '<?xml version=\'1.0\' encoding=\'utf-8\'?><BlockList>';
       for (let i = 0; i < state.blockIds.length; i++) {
           requestBody += '<Latest>' + state.blockIds[i] + '</Latest>';
       }
       requestBody += '</BlockList>';
 
-      this.http.put(uri, requestBody, options)
-        // .map(res => res.json())
+      this.http.put(uri, requestBody, { headers: headers, responseType: 'text' })
         .subscribe(elem => {
           if (state.complete) {
             state.complete();
           }
         }, err => {
-          if (state.error) {
-            state.error();
-          }
+          console.log({ error: err });
         });
   }
   private initializeState (config) {
@@ -93,11 +90,8 @@ export class BlobService {
         const uri = state.fileUrl + '&comp=block&blockid=' + state.blockIds[state.blockIds.length - 1];
         const requestData = evt.target.result;
         const requestData2 = new Uint8Array(evt.target.result);
-        const headers = new Headers({ 'x-ms-blob-type': 'BlockBlob', 'Content-Type': 'application/octet-stream' });
-        const options = new RequestOptions({ headers: headers });
-        // console.log(uri);
-        this.http.put(uri, requestData, options)
-          // .map(res => res.json())
+        const headers = new HttpHeaders({ 'x-ms-blob-type': 'BlockBlob', 'Content-Type': 'application/octet-stream' });
+        this.http.put(uri, requestData, { headers: headers, responseType: 'text' })
           .subscribe(elem => {
             state.bytesUploaded += requestData2.length;
             const percentComplete = ((state.bytesUploaded / state.file.size) * 100).toFixed(2);
@@ -107,9 +101,7 @@ export class BlobService {
 
             this.uploadFileInBlocks(reader, state);
           }, err => {
-            if (state.error) {
-              state.error();
-            }
+            console.log({ error: err });
           });
           }
       };
@@ -129,4 +121,16 @@ export class BlobService {
     }
     return str;
   }
+  private handleAngularJsonBug (error: HttpErrorResponse, cb) {
+   const JsonParseError = 'Http failure during parsing for';
+   const matches = error.message.match(new RegExp(JsonParseError, 'ig'));
+
+   if ((error.status === 200 || error.status === 201) && matches.length === 1) {
+     // return obs that completes;
+     return Observable.empty();
+   } else {
+     cb();
+     // return Observable.throw(error);		// re-throw
+   }
+ }
 }

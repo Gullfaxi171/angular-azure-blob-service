@@ -1,1 +1,0 @@
-{"version":3,"file":"angular-azure-blob-service.js","sources":["angular-azure-blob-service.ts"],"sourcesContent":["/**\n * Generated bundle index. Do not edit.\n */\n\nexport {BlobService,UploadConfig,UploadParams,BlobModule} from './public_api';\n"],"names":[],"mappings":"AAAA;;GAEG;AAEH,OAAO,EAAC,WAAW,EAA2B,UAAU,EAAC,MAAM,cAAc,CAAC"}
