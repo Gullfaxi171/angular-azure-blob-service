@@ -7,8 +7,12 @@ import { Observable } from 'rxjs/Rx';
 export class BlobService {
   static DefaultBlockSize = 1024 * 32;
   constructor (private http: HttpClient) { }
-  generateBlobUrl (params: UploadParams, filename: string) {
-    return 'https://' + params.storageAccount + '.blob.core.windows.net/' + params.containerName + '/' + filename;
+  generateBlobUrl(
+    params: UploadParams,
+    filename: string,
+    useAzureStorageEmulator = false,
+    azureStorageEmulatorBaseUrl = '') {
+    return (useAzureStorageEmulator ? azureStorageEmulatorBaseUrl : 'https://' + params.storageAccount + '.blob.core.windows.net/') + params.containerName + '/' + filename;
   }
   private uploadFileInBlocks (reader, state) {
       if (!state.cancelled) {
