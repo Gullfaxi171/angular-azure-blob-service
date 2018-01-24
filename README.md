@@ -1,7 +1,24 @@
 [![Build Status](https://travis-ci.org/Gullfaxi171/angular-azure-blob-service.svg?branch=master)](https://travis-ci.org/Gullfaxi171/angular-azure-blob-service)
 
 # angular-azure-blob-service
-A simple module for communication with Azure Blob Storage from angular apps. Works with @angular 4
+A simple module for communication with Azure Blob Storage from angular apps. Works with @angular 4.3+
+
+## Installation
+
+```
+npm install angular-azure-blob-service
+```
+
+For older versions of @angular (<4.3) :
+```
+npm install angular-azure-blob-service@0.6.0
+```
+
+## Azure Configuration
+
+TODO
+
+## App Configuration
 
 In your app.module.ts
 
