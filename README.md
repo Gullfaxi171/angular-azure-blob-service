@@ -57,6 +57,7 @@ upload () {
     this.config = {
       baseUrl: baseUrl,
       sasToken: Config.sas,
+      blockSize: 1024 * 64, // OPTIONAL, default value is 1024 * 32
       file: this.currentFile,
       complete: () => {
         console.log('Transfer completed !');
@@ -73,6 +74,15 @@ upload () {
 }
 ```
 
+## CORS
+In order to enable CORS, you should go to your Azure Portal and open the Storage Account. Once there, go to CORS and click "Add" to add a CORS RULE.
+
+* Allowed origins : your URLs, separated by commas, including ports and http:// or https:// if necessary
+* Allowed methods : your choice, you can for instance select all 7
+* Allowed headers : x-ms-blob-type,Content-Type,x-ms-blob-content-type,x-ms-meta-target,x-ms-meta-source,x-ms-meta-data*
+* Exposed headers : x-ms-meta-*
+* Max age : your choice, for instance 200
+
 Todo :
 - write the docs (how to configure cors, how to get the sas token)
-- test it !
+- write tests

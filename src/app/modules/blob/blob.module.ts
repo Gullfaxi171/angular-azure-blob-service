@@ -1,10 +1,10 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, ModuleWithProviders } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { HttpClientModule } from '@angular/common/http'
 
-import { BlobService } from './blob.service';
-export { BlobService } from './blob.service';
-export { UploadConfig, UploadParams } from './definitions';
+import { BlobService } from './blob.service'
+export { BlobService } from './blob.service'
+export { UploadConfig, UploadParams } from './definitions'
 
 @NgModule({
   imports: [
@@ -21,6 +21,6 @@ export class BlobModule {
       providers: [
         BlobService
       ]
-    };
+    }
   }
 }

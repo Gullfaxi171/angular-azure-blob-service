@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { BlobService, UploadConfig, UploadParams } from './modules/blob/blob.module';
-import { Config } from './config';
+import { Component } from '@angular/core'
+import { BlobService, UploadConfig, UploadParams } from './modules/blob/blob.module'
+import { Config } from './config'
 
 @Component({
   selector: 'app-root',
@@ -9,37 +9,38 @@ import { Config } from './config';
 })
 export class AppComponent {
   /** The upload config */
-  config: UploadConfig;
+  config: UploadConfig
   /** The selected file */
-  currentFile: File;
+  currentFile: File
   /** The current percent to be displayed */
-  percent: number;
+  percent: number
   constructor (private blob: BlobService) {
-    this.currentFile = null;
-    this.config = null;
-    this.percent = 0;
+    this.currentFile = null
+    this.config = null
+    this.percent = 0
   }
   updateFiles (files) {
-    this.currentFile = files[0];
+    this.currentFile = files[0]
   }
   upload () {
     if (this.currentFile !== null) {
-      const baseUrl = this.blob.generateBlobUrl(Config, this.currentFile.name);
+      const baseUrl = this.blob.generateBlobUrl(Config, this.currentFile.name)
       this.config = {
         baseUrl: baseUrl,
+        blockSize: 1024 * 32,
         sasToken: Config.sas,
         file: this.currentFile,
         complete: () => {
-          console.log('Transfer completed !');
+          console.log('Transfer completed !')
         },
         error: () => {
-          console.log('Error !');
+          console.log('Error !')
         },
         progress: (percent) => {
-          this.percent = percent;
+          this.percent = percent
         }
-      };
-      this.blob.upload(this.config);
+      }
+      this.blob.upload(this.config)
     }
   }
 }
