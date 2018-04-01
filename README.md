@@ -83,6 +83,8 @@ In order to enable CORS, you should go to your Azure Portal and open the Storage
 * Exposed headers : x-ms-meta-*
 * Max age : your choice, for instance 200
 
+you can find more info [here](https://dmrelease.blob.core.windows.net/azurestoragejssample/samples/sample-blob.html)
+
 Todo :
 - write the docs (how to configure cors, how to get the sas token)
 - write tests
