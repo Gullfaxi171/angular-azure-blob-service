@@ -48,6 +48,9 @@ export class BlobService {
           }
         }, err => {
           console.log({ error: err })
+          if (state.error) {
+            state.error(err);
+          }
         })
   }
   private initializeState (config: UploadConfig) {
@@ -107,6 +110,9 @@ export class BlobService {
             this.uploadFileInBlocks(reader, state)
           }, err => {
             console.log({ error: err })
+            if (state.error) {
+              state.error(err);
+            }
           })
           }
       }
