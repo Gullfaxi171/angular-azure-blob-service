@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { UploadParams, UploadConfig } from './definitions'
-import { Observable } from 'rxjs/Rx'
-
 @Injectable()
 export class BlobService {
   static DefaultBlockSize = 1024 * 32
@@ -42,14 +40,14 @@ export class BlobService {
       requestBody += '</BlockList>'
 
       this.http.put(uri, requestBody, { headers: headers, responseType: 'text' })
-        .subscribe(elem => {
+        .subscribe(_elem => {
           if (state.complete) {
             state.complete()
           }
         }, err => {
           console.log({ error: err })
           if (state.error) {
-            state.error(err);
+            state.error(err)
           }
         })
   }
@@ -100,7 +98,7 @@ export class BlobService {
         const requestData2 = new Uint8Array(evt.target.result)
         const headers = new HttpHeaders({ 'x-ms-blob-type': 'BlockBlob', 'Content-Type': 'application/octet-stream' })
         this.http.put(uri, requestData, { headers: headers, responseType: 'text' })
-          .subscribe(elem => {
+          .subscribe(_elem => {
             state.bytesUploaded += requestData2.length
             const percentComplete = Math.round((state.bytesUploaded / state.file.size) * 1000) / 10
             if (state.progress) {
@@ -111,7 +109,7 @@ export class BlobService {
           }, err => {
             console.log({ error: err })
             if (state.error) {
-              state.error(err);
+              state.error(err)
             }
           })
           }
@@ -132,16 +130,4 @@ export class BlobService {
     }
     return str
   }
-  private handleAngularJsonBug (error: HttpErrorResponse, cb) {
-   const JsonParseError = 'Http failure during parsing for'
-   const matches = error.message.match(new RegExp(JsonParseError, 'ig'))
-
-   if ((error.status === 200 || error.status === 201) && matches.length === 1) {
-     // return obs that completes
-     return Observable.empty()
-   } else {
-     cb()
-     // return Observable.throw(error)		// re-throw
-   }
- }
 }

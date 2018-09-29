@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { BlobService, UploadConfig, UploadParams } from './modules/blob/blob.module'
+import { BlobService, UploadConfig } from './modules/blob/blob.module'
 import { Config } from './config'
 
 @Component({
