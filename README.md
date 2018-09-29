@@ -62,8 +62,8 @@ upload () {
       complete: () => {
         console.log('Transfer completed !');
       },
-      error: () => {
-        console.log('Error !');
+      error: (err) => {
+        console.log('Error:', err);
       },
       progress: (percent) => {
         this.percent = percent;

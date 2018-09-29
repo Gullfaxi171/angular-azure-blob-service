@@ -1,3 +1,5 @@
+import { HttpErrorResponse } from '@angular/common/http'
+
 export interface UploadParams {
   /** The SAS, that can be found in the storage account parameters */
   sas: string
@@ -19,7 +21,7 @@ export interface UploadConfig {
   /** Event triggered on complete */
   complete?: () => void
   /** Event triggered en error */
-  error?: () => void
+  error?: (err: HttpErrorResponse) => void
   /** Event fired on each progress update */
   progress?: (percent: number) => void
 }
