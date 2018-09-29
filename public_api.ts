@@ -1,1 +1,1 @@
-export * from './src/app/modules/blob/blob.module';
+export * from './src/app/modules/blob/blob.module'
