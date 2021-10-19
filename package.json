@@ -2,6 +2,10 @@
   "name": "angular-azure-blob-service",
   "version": "1.1.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Gullfaxi171/angular-azure-blob-service.git"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
